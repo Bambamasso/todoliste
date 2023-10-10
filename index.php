@@ -29,14 +29,13 @@
       }
 
       $afficheTache=mysqli_fetch_all($execute, MYSQLI_ASSOC);
-        var_dump($afficheTache);
+        // var_dump($afficheTache);
      
   }
   
 
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -82,8 +81,8 @@
         <?php foreach($afficheTache as $value):?>
         <tr>
             <td><?php echo $value['tache'] ?></td>
-            <td><a href="./modofier.php">modifier</a></td>
-            <td><a href="">suprimer</a></td>
+            <td><a href="modofier.php?id=<?php echo $value['id'];?>">modifier</a></td>
+            <td><a href="suprimer.php?id=<?php echo $value['id'];?>">suprimer</a></td>
         </tr>
         <?php endforeach;?>
       </table>
