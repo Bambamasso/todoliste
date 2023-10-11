@@ -1,12 +1,23 @@
 <?php
+$connexion= mysqli_connect('localhost','root','','todoliste');
+
+   if(!$connexion){
+    die ("connexion échouée");
+   }
+   $affiche="SELECT * FROM tâche";
+   $execute=mysqli_query($connexion, $affiche);
+
+   if($execute){
+       $afficheTache=mysqli_fetch_all($execute, MYSQLI_ASSOC);
+     }else{
+      $afficheTache=[];
+     }
+
+     
   if(!empty ($_POST['tache'])){
      $tache=$_POST['tache'];
 
-   $connexion= mysqli_connect('localhost','root','','todoliste');
-
-   if($connexion){
-    echo "connexion reusi";
-   }
+   
 
     $envoie="INSERT INTO tâche(tache)";
     $envoie .="VALUES('$tache')";
@@ -19,22 +30,11 @@
         echo "non";
     }
 
-    $affiche="SELECT * FROM tâche";
-    $execute=mysqli_query($connexion, $affiche);
-
-    if($affiche){
-        echo"yes";
-      }else{
-        echo"nooooo";
-      }
-
-      $afficheTache=mysqli_fetch_all($execute, MYSQLI_ASSOC);
+   
         // var_dump($afficheTache);
      
   }
-  
-
-
+ 
 ?>
 
 <!DOCTYPE html>
